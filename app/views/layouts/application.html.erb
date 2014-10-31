@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LunchTrain</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<p class="navbar-text pull-right">
+  <% if rider_signed_in? %>
+      <strong><%= current_rider.email %></strong>
+      <%= link_to 'Join a train', trains_path %> |
+      <%= link_to 'Edit ratings', stations_path %> |
+      <%= link_to 'Edit profile', edit_rider_registration_path, :class => 'navbar-link' %>
+      <%= form_tag(destroy_rider_session_path, {method: :delete , class: 'navbar-link'} ) do -%>
+        <%= submit_tag 'Logout' %>
+      <% end -%>
+  <% else %>
+      <%= link_to 'Sign up', new_rider_registration_path, :class => 'navbar-link'  %> |
+      <%= link_to 'Login', new_rider_session_path, :class => 'navbar-link'  %>
+  <% end %>
+</p>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+<%= yield %>
+
+<%= javascript_include_tag 'application' => true %>
+</body>
+</html>
