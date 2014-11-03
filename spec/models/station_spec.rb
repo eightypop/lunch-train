@@ -53,9 +53,6 @@ RSpec.describe Station, :type => :model do
         expect(rider_ratings).to include (an_object_having_attributes(name: 'McDonalds'))
       end
     end
-
-
   end
-
 
 end

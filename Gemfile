@@ -33,6 +33,8 @@ gem 'rspec-rails', group: :test
 
 gem 'factory_girl_rails', '~> 4.0', group: :test
 
+gem 'capybara', group: :test
+
 
 
 # Use ActiveModel has_secure_password

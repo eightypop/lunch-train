@@ -7,4 +7,6 @@ class Station < ActiveRecord::Base
       .select('stations.*, rider_ratings.value as rating, rider_ratings.rider_id as rider_id')
   }
 
+  attr_accessor :score
+
 end

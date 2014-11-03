@@ -4,15 +4,19 @@
 <%= @train.station || 'undecided' %>
 </p>
 <% if @train.riders.any? %>
-    <h2>riders</h2>
+    <h4>riders</h4>
     <ul>
     <% @train.riders.each do |r| %>
             <li><%= r.name || r.email %></li>
     <% end %>
     </ul>
-    <% @train.recommended_stations.each do |s| %>
 
+    <h4>recommended lunch stations</h4>
+    <ul>
+    <% @train.recommended_stations.each do |station| %>
+         <li><%= station.name %><span>score: <%= station.score %></span></li>
     <% end %>
+    </ul>
 
 <% end %>
 
