@@ -23,6 +23,7 @@ RSpec.describe Train, :type => :model do
         expect(recommended_stations).to_not be_empty
         expect(recommended_stations).to include(an_object_having_attributes(name: 'Cava'))
         expect(first_station).to have_attributes(score: 60, name: 'Cava')
+        expect(recommended_stations.last).to have_attributes(score: 30, name: '5Guys')
 
       end
 

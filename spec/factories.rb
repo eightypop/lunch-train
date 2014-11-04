@@ -59,8 +59,8 @@ FactoryGirl.define do
 
   factory :train do
     depart_time Time.parse "September 25 2002 1:02pm EST"
-    factory :train_with_riders do
 
+    factory :train_with_riders do
       transient do
         new_riders []
       end

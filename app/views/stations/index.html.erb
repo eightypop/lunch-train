@@ -14,8 +14,8 @@
         <td><%= link_to 'Show', station %></td>
         <td><%= link_to 'Edit', edit_station_path(station) %></td>
         <td>
-          <%= form_tag("stations/#{station.id}/rate") do %>
-            <%= range_field_tag('rating[value]', station.rating || 0, in: -50...50, step: 1) %>
+          <%= form_tag("stations/#{station.id}/rate", id: "station_#{station.id}") do %>
+            <%= range_field_tag('rating[value]', station.rating || 0, in: -50...50, step: 1, id: "station_#{station.id}_rating") %>
               <%= submit_tag 'update' %>
           <% end %>
         </td>

@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>LunchTrain</title>
+  <link rel="shortcut icon" href="/favicon.ico">
   <%= stylesheet_link_tag    'application', media: 'all' %>
 
   <%= csrf_meta_tags %>
@@ -25,6 +26,6 @@
 <p class="alert"><%= alert %></p>
 <%= yield %>
 
-<%= javascript_include_tag 'application' => true %>
+<%= javascript_include_tag 'application' %>
 </body>
 </html>

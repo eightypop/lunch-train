@@ -1,7 +1,5 @@
 <p id="notice"><%= notice %></p>
 <h1>The <%= @train.depart_time.to_formatted_s %> train</h1>
-<p><span>Destination:</span>
-<%= @train.station || 'undecided' %>
 </p>
 <% if @train.riders.any? %>
     <h4>riders</h4>
