@@ -10,14 +10,11 @@
   <tbody>
     <% @stations.each do |station| %>
       <tr>
-        <td><%= station.name %></td>
-        <td><%= link_to 'Show', station %></td>
-        <td><%= link_to 'Edit', edit_station_path(station) %></td>
+        <td><h3><%= station.name %></h3></td>
         <td>
-          <%= form_tag("stations/#{station.id}/rate", id: "station_#{station.id}") do %>
-            <%= range_field_tag('rating[value]', station.rating || 0, in: -50...50, step: 1, id: "station_#{station.id}_rating") %>
-              <%= submit_tag 'update' %>
-          <% end %>
+          <span>No thanks</span>
+          <input class="ratingUpdates" data-station="<%= station.id %>" type="range" value="<%= station.rating || 0 %>" min="-50" max="50" step="1"/>
+          <span>Yes please!</span>
         </td>
       </tr>
     <% end %>

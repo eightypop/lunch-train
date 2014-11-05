@@ -38,7 +38,7 @@ class StationsController < ApplicationController
 
   def rate
 
-    current_rider.update_rating(@station, rating_params[:value])
+    rating = current_rider.update_rating(@station, rating_params[:value])
 
     respond_to do |f|
       f.json { render json: rating }

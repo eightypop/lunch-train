@@ -1,1 +1,9 @@
 <h1>Welcome to lunch train!</h1>
+<% if @lines.any? %>
+<h2>Lines</h2>
+<ul>
+  <% @lines.each do |line| %>
+  <h3><%= link_to(line.name, line_path(line)) %></h3>
+  <% end %>
+</ul>
+<% end %>

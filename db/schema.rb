@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141031153405) do
+ActiveRecord::Schema.define(version: 20141105200434) do
+
+  create_table "lines", force: true do |t|
+    t.string   "name"
+    t.string   "time_zone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "ratings", force: true do |t|
     t.integer  "rider_id"

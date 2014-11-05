@@ -6,7 +6,7 @@ feature "Trains", :type => :feature do
     create :train, depart_time: Time.now, id: 1
   end
 
-  scenario 'user joins a train' do
+  scenario 'user joins a train and leaves trains' do
     visit '/riders/sign_in'
     expect(page).to have_content('Log in')
     within '#new_rider' do
@@ -27,7 +27,8 @@ feature "Trains", :type => :feature do
 
     expect(current_path).to eq '/trains/1'
 
-    expect(page).to have_button('get off this train')
+    click_button('get off this train')
+    expect(page).to have_button('get on this train')
 
   end
 end

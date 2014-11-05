@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :lines
+
   resources :trains do
     member do
       post 'on'
