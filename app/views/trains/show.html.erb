@@ -24,7 +24,7 @@
 
 <% if current_rider.is_on? @train %>
     <%= form_tag off_train_path(@train), method: :delete do %>
-        <%= submit_tag "get off of this train" %>
+        <%= submit_tag "get off this train" %>
     <% end %>
 <% else %>
     <%= form_tag on_train_path(@train) do %>

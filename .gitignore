@@ -47,3 +47,4 @@ config/secrets.yml
 bower.json
 vendor/ruby
 vendor/cache
+.env
