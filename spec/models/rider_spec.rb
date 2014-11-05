@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 describe Rider do
+  subject(:rider) { create :rider }
 
   context "with a station" do
-    subject(:rider) { create :rider }
     let(:station) { create :station }
     let(:generic_rating) { create :rating, rider: rider, station: station, value: 26 }
 
@@ -29,7 +29,23 @@ describe Rider do
       value = generic_rating.value
       expect(rider.get_rating_for(station)).to eq(value)
     end
-
   end
 
+  context "with a train" do
+    let(:train){ create :train }
+
+    context "when on the train" do
+      it 'returns true for #is_on?' do
+        train.riders << subject
+
+        expect(subject.is_on?(train)).to be_truthy
+      end
+    end
+
+    context "when not on the train" do
+      it 'returns false for #is_on?' do
+        expect(subject.is_on?(train)).to be_falsy
+      end
+    end
+  end
 end

@@ -4,27 +4,25 @@ class Train < ActiveRecord::Base
   has_and_belongs_to_many :riders
 
   def recommended_stations
-      ActiveSupport::OrderedHash[ranked_stations.sort_by { |k,v| v }.reverse].map do |s, v|
-        s.score = v
-        s
-      end
+    ranked_stations.sort_by{ |rs| rs.score }.reverse
   end
 
   protected
   def ranked_stations
-    ratings = riders.inject([]) do |all, rider|
-      all.push(*rider.ratings)
-    end
+    station_ratings = riders.map(&:ratings).flatten.group_by(&:station_id)
 
-    scores = {}
+    Station.all.map do | station |
+      station.score = station_rank(station_ratings, station)
 
-    Station.all.each do |s|
-      scores[s] = ratings.inject(0) do |score, rating|
-        score += rating.value if s == rating.station
-        score
-      end
+      station
     end
-    scores
   end
 
+  def station_rank(station_ratings, station)
+    return 0 if station_ratings[station.id].nil?
+
+    station_ratings[station.id].reduce(0) do | sum, rating |
+      sum + rating.value
+    end
+  end
 end

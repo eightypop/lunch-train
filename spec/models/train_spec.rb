@@ -21,13 +21,11 @@ RSpec.describe Train, :type => :model do
         recommended_stations = train.recommended_stations
         first_station = recommended_stations.first
         expect(recommended_stations).to_not be_empty
-        expect(recommended_stations).to include(an_object_having_attributes(name: 'Cava'))
         expect(first_station).to have_attributes(score: 60, name: 'Cava')
         expect(recommended_stations.last).to have_attributes(score: 30, name: '5Guys')
-
       end
-
     end
+
     context 'without ratings' do
       let(:rider1) { create :rider }
       let(:rider2) { create :rider }

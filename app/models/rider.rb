@@ -10,26 +10,14 @@ class Rider < ActiveRecord::Base
   has_and_belongs_to_many :trains
 
   def get_rating_for(station)
-    rating = station_rating(station)
-    if rating
-      rating.value
-    else
-      0
-    end
+    (rating = station_rating(station)) ? rating.value : 0
   end
 
   def update_rating(station, rating_value)
-    rating = station_rating(station)
-
-    if rating.nil?
-      rating = Rating.new
-      rating.station_id = station.id
-      rating.rider_id = id
-    end
+    rating = (station_rating(station) or ratings.build(station: station))
 
     rating.value = rating_value
     rating.save
-
   end
 
   def is_on? train
