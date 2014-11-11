@@ -1,7 +1,11 @@
 class StationsController < ApplicationController
+
   before_action :set_station, only: [:show, :edit, :update, :destroy, :rate]
-  before_action :authenticate_rider!
+
   respond_to :html, :json
+
+  before_action :authenticate_rider!, unless: 'is_cibot?'
+  before_action :api_auth_rider!, if: 'is_cibot?'
 
   def index
     @stations = Station.with_rider_ratings(current_rider)
@@ -56,8 +60,8 @@ class StationsController < ApplicationController
       params.require(:station).permit(:name)
     end
 
-  def rating_params
+    def rating_params
       params.require(:rating).permit(:value)
-  end
+    end
 
 end

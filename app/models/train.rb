@@ -1,13 +1,17 @@
 class Train < ActiveRecord::Base
 
+  validates :depart_time, presence: true
+
   belongs_to :station
   has_and_belongs_to_many :riders
+
+  scope :today, -> { where('depart_time >= ?',  Time.zone.now.beginning_of_day ) }
 
   def recommended_stations
     ranked_stations.sort_by{ |rs| rs.score }.reverse
   end
 
-  protected
+  private
   def ranked_stations
     station_ratings = riders.map(&:ratings).flatten.group_by(&:station_id)
 
@@ -25,4 +29,5 @@ class Train < ActiveRecord::Base
       sum + rating.value
     end
   end
+
 end

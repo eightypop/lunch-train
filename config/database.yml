@@ -24,4 +24,4 @@ test:
 
 production:
   <<: *default
-  database: lunch_train_p
+  database: <%= ENV['TEST_DB_NAME'] %>

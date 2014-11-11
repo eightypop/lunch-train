@@ -9,4 +9,8 @@ class Station < ActiveRecord::Base
 
   attr_accessor :score
 
+  def slug
+    name.underscore
+  end
+
 end
