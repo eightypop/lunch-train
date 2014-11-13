@@ -8,7 +8,7 @@ class StationsController < ApplicationController
   before_action :api_auth_rider!, if: 'is_cibot?'
 
   def index
-    @stations = Station.with_rider_ratings(current_rider)
+    @stations = Station.with_rider_ratings(current_rider).order(id: :asc)
     respond_with(@stations)
   end
 

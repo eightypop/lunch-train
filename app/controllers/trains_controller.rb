@@ -24,12 +24,20 @@ class TrainsController < ApplicationController
 
   def create
     #format input to discard day, month settings and use today
-    given_time = Time.parse(train_params[:depart_time])
-    actual_time = Time.parse("#{given_time.hour}: #{given_time.min}")
-    @train = Train.new(depart_time: actual_time)
-    @train.riders << current_rider
-    @train.save
-    respond_with(@train)
+    begin
+      given_time = Time.parse(train_params[:depart_time])
+      actual_time = Time.parse("#{given_time.hour}: #{given_time.min}")
+      @train = Train.new(depart_time: actual_time)
+      @train.riders << current_rider
+      @train.save
+      respond_with(@train)
+    rescue => e
+      payload = {
+          error: e.message,
+          status: 400
+      }
+      render json: payload, status: :bad_request
+    end
   end
 
   def update
