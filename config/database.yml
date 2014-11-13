@@ -23,5 +23,7 @@ test:
   database: <%= ENV['TEST_DB_NAME'] %>
 
 production:
-  <<: *default
-  database: <%= ENV['TEST_DB_NAME'] %>
+  adapter: postgresql
+  encoding: unicode
+  database: <%= ENV['PROD_DB_NAME'] %>
+  pool: 5
